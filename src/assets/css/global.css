@@ -1,0 +1,21 @@
+/* 全局样式表*/
+html,
+body,
+#app {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    min-width: 1366px;
+}
+
+.release .el-card__body{
+    height:88%;
+}
+
+.el-textarea {
+    height: 100%;
+}
+.el-textarea__inner {
+    height: 100%;
+    resize: none;
+}
