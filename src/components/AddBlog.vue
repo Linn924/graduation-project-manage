@@ -105,7 +105,7 @@ export default {
         },
         //获取分类与标签数据
         async getSTData(){
-            const {data:res} = await this.axios.get("blogdatadetail")
+            const {data:res} = await this.axios.get("sortsAndlabels")
             if(res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.sortList = res.data.data
             this.technologyList = res.data.data2
@@ -122,7 +122,7 @@ export default {
         async addBlog(){
             if(!this.blogForm.mdname.split('.').includes('md')){this.blogForm.mdname += '.md'}
             this.blogForm.date = this.date(this.blogForm.date)
-            const {data:res} = await this.axios.post('addblog',this.blogForm)
+            const {data:res} = await this.axios.post('blogs',this.blogForm)
             if(res.code != 200) this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.$message({message: `${res.tips}`,type: 'success',duration:1000})
             this.blogForm = {

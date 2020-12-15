@@ -140,7 +140,7 @@ export default {
                     type: 'warning'
                 }).catch(err => err)
                 if (confirmResult !== 'confirm') return this.$message({message: '已取消删除',type: 'info',duration:1000})
-                const {data:res} = await this.axios.delete('deleteComment',{
+                const {data:res} = await this.axios.delete('comments',{
                     params:{
                         id:data.id,
                         blog_id:data.blog_id,

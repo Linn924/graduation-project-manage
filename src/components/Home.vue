@@ -103,7 +103,7 @@ export default {
         async login(){
              this.$refs.loginFormRef.validate( async valid => {
                 if(!valid) return
-                const {data:res} = await this.axios.post("login",this.loginForm)
+                const {data:res} = await this.axios.get("login",{params:this.loginForm})
                 if(res.code != 200) return this.$message({message: '登录失败',type: 'error',duration:1000})
                 this.$message({message: `${res.tips}`,type: 'success',duration:1000})
                 window.sessionStorage.setItem('token', res.token)

@@ -63,14 +63,14 @@ export default {
     methods: {
         //获取分类与标签数据函数
         async getSTData(){
-            const {data:res} = await this.axios.get("blogdatadetail")
+            const {data:res} = await this.axios.get("sortsAndlabels")
             if(res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.sortList = res.data.data
         },
         //添加分类
         async addsort(){
             if(this.sortForm.sort_name.trim() === '') return this.$message({message: '请输入数据',type: 'error',duration:1000})
-            const {data:res} = await this.axios.post("addsort",this.sortForm)
+            const {data:res} = await this.axios.post("sorts",this.sortForm)
             this.sortForm.sort_name = ''
             if(res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.$message({message: `${res.tips}`,type: 'success',duration:1000})
@@ -87,7 +87,7 @@ export default {
             }).catch(err => err)
 
             if (confirmResult !== 'confirm') return this.$message({message: '已取消删除',type: 'info',duration:1000})
-            const {data:res} = await this.axios.delete('deletesort',{params:{id:value.id}})
+            const {data:res} = await this.axios.delete('sorts',{params:{id:value.id}})
             if(res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.$message({message: `${res.tips}`,type: 'success',duration:1000})
             this.getSTData()
@@ -97,7 +97,7 @@ export default {
             this.editSortDialog = true
         },
         async updateSort(){
-            const {data:res} = await this.axios.put('updatesort',this.updateSortData)
+            const {data:res} = await this.axios.put('sorts',this.updateSortData)
             if( res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.$message({message: `${res.tips}`,type: 'success',duration:1000})
             this.getSTData()

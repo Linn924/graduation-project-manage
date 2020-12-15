@@ -115,7 +115,7 @@ export default {
     methods:{
         //获取所有的评论
         async getNavs(){
-            const {data:res} = await this.axios.get("navs",{params:this.queryList})
+            const {data:res} = await this.axios.get("navsByAdmin",{params:this.queryList})
             if(res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.navList = res.data
             this.total = res.total

@@ -163,7 +163,7 @@ export default {
         },
         //获取博客数据
         async getBlogData(){
-            const {data:res} = await this.axios.get("blogdata",{params:this.queryList})
+            const {data:res} = await this.axios.get("blogs",{params:this.queryList})
             if(res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.blogList = res.data
             this.blogList.forEach(item => {item.date = this.date(item.date)})
@@ -172,7 +172,7 @@ export default {
         },
         //获取分类与标签数据
         async getSTData(){
-            const {data:res} = await this.axios.get("blogdatadetail")
+            const {data:res} = await this.axios.get("sortsAndlabels")
             if(res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.sortList = res.data.data
             this.technologyList = res.data.data2
@@ -188,7 +188,7 @@ export default {
             }).catch(err => err)
 
             if (confirmResult !== 'confirm') return this.$message({message: '已取消删除',type: 'info',duration:1000})
-            const {data:res} = await this.axios.delete('deleteblog',{params:{id:value.id}})
+            const {data:res} = await this.axios.delete('blogs',{params:{id:value.id}})
             if( res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.$message({message: `${res.tips}`,type: 'success',duration:1000})
             this.getBlogData()
@@ -211,7 +211,7 @@ export default {
         },
         async updateBlog(){
             this.dealBlogForm()
-            const {data:res} = await this.axios.put('updateblog',this.blogForm)
+            const {data:res} = await this.axios.put('blogs',this.blogForm)
             if( res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.$message({message: `${res.tips}`,type: 'success',duration:1000})
             this.getBlogData()

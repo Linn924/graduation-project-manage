@@ -60,14 +60,14 @@ export default {
     methods: {
         //获取分类与标签数据函数
         async getSTData(){
-            const {data:res} = await this.axios.get("blogdatadetail")
+            const {data:res} = await this.axios.get("sortsAndlabels")
             if(res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.technologyList = res.data.data2
         },
         //添加标签
         async addtechnology(){
             if(this.technologyForm.technology_name.trim() === '') return this.$message({message: '请输入数据',type: 'error',duration:1000})
-            const {data:res} = await this.axios.post("addtechnology",this.technologyForm)
+            const {data:res} = await this.axios.post("labels",this.technologyForm)
             this.technologyForm.technology_name = ''
             if(res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.$message({message: `${res.tips}`,type: 'success',duration:1000})
@@ -84,7 +84,7 @@ export default {
             }).catch(err => err)
 
             if (confirmResult !== 'confirm') return this.$message({message: '已取消删除',type: 'info',duration:1000})
-            const {data:res} = await this.axios.delete('deletetechnology',{params:{id:value.id}})
+            const {data:res} = await this.axios.delete('labels',{params:{id:value.id}})
             if(res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.$message({message: `${res.tips}`,type: 'success',duration:1000})
             this.getSTData()
@@ -94,7 +94,7 @@ export default {
             this.editTDialog = true
         },
         async updateT(){
-            const {data:res} = await this.axios.put('updatetechnology',this.updateTData)
+            const {data:res} = await this.axios.put('labels',this.updateTData)
             if( res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.$message({message: `${res.tips}`,type: 'success',duration:1000})
             this.getSTData()

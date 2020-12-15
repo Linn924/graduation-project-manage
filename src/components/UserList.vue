@@ -62,7 +62,7 @@ export default {
     methods:{
         //获取所有的评论
         async getUsers(){
-            const {data:res} = await this.axios.get("users",{params:this.queryList})
+            const {data:res} = await this.axios.get("usersByAdmin",{params:this.queryList})
             if(res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.userList = res.data
             this.userList.forEach(item => {
@@ -81,7 +81,7 @@ export default {
             this.getUsers()
         },
         async putUsers(data){
-            const {data:res} = await this.axios.put('users',data)
+            const {data:res} = await this.axios.put('usersByAdmin',data)
             if(res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.$message({message: `${res.tips}`,type: 'success',duration:1000})
             this.getUsers()
