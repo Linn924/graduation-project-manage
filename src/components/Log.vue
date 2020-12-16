@@ -42,9 +42,11 @@ export default {
         },
         //获取操作日志
         getOperateLog(){
-            let str = window.sessionStorage.getItem('operationlogArr')
-            this.operationlogArr = JSON.parse(str)
-            this.operationlogArr.forEach(item => item.time = this.dealDate(item.time))
+            let str = sessionStorage.getItem('operationlogArr')
+            if(str){
+                this.operationlogArr = JSON.parse(str)
+                this.operationlogArr.forEach(item => item.time = this.dealDate(item.time))
+            } 
         }
     }
 }

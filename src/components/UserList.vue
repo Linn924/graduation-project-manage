@@ -82,7 +82,10 @@ export default {
         },
         async putUsers(data){
             const {data:res} = await this.axios.put('usersByAdmin',data)
-            if(res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
+            if(res.code != 200) {
+                data.status = !data.status
+                return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
+            }
             this.$message({message: `${res.tips}`,type: 'success',duration:1000})
             this.getUsers()
         },

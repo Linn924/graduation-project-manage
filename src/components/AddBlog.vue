@@ -123,7 +123,7 @@ export default {
             if(!this.blogForm.mdname.split('.').includes('md')){this.blogForm.mdname += '.md'}
             this.blogForm.date = this.date(this.blogForm.date)
             const {data:res} = await this.axios.post('blogs',this.blogForm)
-            if(res.code != 200) this.$message({message: `${res.tips}`,type: 'error',duration:1000})
+            if(res.code != 200) return this.$message({message: `${res.tips}`,type: 'error',duration:1000})
             this.$message({message: `${res.tips}`,type: 'success',duration:1000})
             this.blogForm = {
                 title:'',introduce:'',date:'',sortname:'',
